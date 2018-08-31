@@ -17,9 +17,9 @@ const json = require('./temp/odb.json');
 
 const parsed = ODB.parse(json);
 
-console.log(parsed.drugs.length)
+console.log(parsed.drugs.length);
 
 //console.log(parsed.drugs[0]);
 //console.log(parsed.drugs[1]);
 
-fs.writeFileSync('./temp/odb.parsed.json', JSON.stringify(parsed, null, '\t'), 'utf8')
+fs.writeFileSync('./temp/odb.parsed.json', JSON.stringify(parsed, null, '\t'), 'utf8');

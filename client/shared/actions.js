@@ -3,10 +3,10 @@ const Actions = {
 	init : (initState)=>{
 		Store.setters.init(initState);
 	},
-	inc : (val = 1) => {
+	inc : (val = 1)=>{
 		Actions.setVal(Store.getVal() + val);
 	},
-	setVal : (newVal) => {
+	setVal : (newVal)=>{
 		Store.setters.setVal(newVal);
 	},
 };
