@@ -1,0 +1,27 @@
+{
+  "name": "formulary",
+  "version": "0.0.0",
+  "description": "Better interface for the ODB Formulary",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --ignore temp test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stolksdorf/formulary.git"
+  },
+  "author": "stolksdorf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stolksdorf/formulary/issues"
+  },
+  "homepage": "https://github.com/stolksdorf/formulary#readme",
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "md5": "^2.2.1",
+    "short-hash": "^1.0.0",
+    "superagent": "^3.8.3",
+    "xml2js": "^0.4.19"
+  }
+}
