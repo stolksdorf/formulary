@@ -1,3 +1,49 @@
-.Main{
+@import url('https://fonts.googleapis.com/css?family=Lato');
+require('shared/styles/reset.less');
+require('shared/styles/colors.less');
 
+html {
+	background-color : white;
+}
+body{
+	overflow-x       : hidden;
+	background-color : white;
+	font-family      : "Lato", Helvetica, Arial, sans-serif;
+}
+input{
+	font-family      : "Lato", Helvetica, Arial, sans-serif;
+}
+*{
+	box-sizing: border-box;
+}
+
+.Main{
+	height           : 100%;
+	min-height : 100vh;
+	background-image : require('./funky-lines.png');
+	nav{
+		display          : flex;
+		width            : 100%;
+		margin-bottom    : 2em;
+		padding          : 1em;
+		background-color : white;
+		color            : @teal;
+		box-shadow       : 0 8px 6px -6px #999;
+		align-items      : center;
+		i{
+			margin-right : 0.4em;
+			font-size    : 1.3em;
+		}
+		h3{
+			display        : inline;
+			font-size      : 0.8em;
+			font-weight    : 800;
+			text-transform : uppercase;
+		}
+	}
+	.container{
+		position: relative;
+		margin : 0 auto;
+		width : 80%;
+	}
 }

@@ -2,7 +2,7 @@ const config = require('./config/config.init.js');
 const server = require('./server/server.js');
 
 
-require('./odb/odb.process.js').init()
+require('./odb/odb.process.js').init(false)
 	.then(()=>console.log('Newest data fetched!'));
 
 

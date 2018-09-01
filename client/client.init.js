@@ -1,4 +1,2 @@
-
-
-//setup client config
-// dump props into ODB database
+const ODB = require('../odb/odb.service.js');
+ODB.set(global.vitreum_props.odbData);

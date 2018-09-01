@@ -1,33 +1,45 @@
+const request   = require('superagent');
+const _         = require('lodash');
+const shortHash = require('short-hash');
+
+const fs = require('fs');
+
+const Parse = require('./odb.parse.js');
+
 //fetch
 //parse
 //db dump locale
 // init service
 //
-const Service = require('./odb.service.js');
-const fs = require('fs');
+
+const BACKUP_NAME = 'backup.data.json';
+
+const ODB = require('./odb.service.js');
 
 
 const Process = {
-	fetch : ()=>{
-		//ping url
-		//return raw xml
+	fetch : async ()=>{
+		return request.get('http://www.health.gov.on.ca/en/pro/programs/drugs/data_extract.xml')
+			.then((res)=>res.text)
 	},
-
-	parse : (xml)=>{
-		// do yo thang
+	saveBackup : async (json)=>{
+		return Process.fetch()
+			.then(Parse)
+			.then((data)=>{
+				fs.writeFileSync(`./odb/${BACKUP_NAME}`, JSON.stringify(data, null, '\t'));
+			})
 	},
-
-	saveBackup : (json)=>{
-		// fetch
-		//parse
-		// save into 'backup.data.json'
+	loadBackup(){
+		ODB.set(require(`./${BACKUP_NAME}`));
 	},
-
-	init : async ()=>{
-		//load existing backup into service
-		//start a fetch
-		// parse
-		// load result into service when done
+	init : async (fetch=true)=>{
+		Process.loadBackup();
+		if(fetch){
+			return Process
+				.fetch()
+				.then(Parse)
+				.then(ODB.set);
+		}
 	}
 
 };

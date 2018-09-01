@@ -32,10 +32,9 @@
     "classnames": "^2.2.6",
     "create-react-class": "^15.6.3",
     "express": "^4.16.3",
+    "fast-levenshtein": "^2.0.6",
     "lodash": "^4.17.10",
-    "md5": "^2.2.1",
     "pico-conf": "^1.4.1",
-    "pico-flux": "^3.1.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "short-hash": "^1.0.0",
@@ -46,7 +45,8 @@
   "vitreum": {
     "targets": [
       "client/main/main.jsx"
-    ]
+    ],
+    "template": "./client/template.html.js"
   },
   "babel": {
     "presets": [
