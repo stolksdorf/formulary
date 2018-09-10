@@ -1,5 +1,7 @@
 # formulary
-Better interface for the ODB Formulary
+Better interface for the [ODB Formulary](https://www.formulary.health.gov.on.ca/formulary/)
+
+[Check it out here](https://odb-formulary.herokuapp.com/)
 
 
 ODB Formulary
@@ -30,14 +32,14 @@ ODB Formulary
   -
 
 
-/** INteesting drugs **/
+/** Intersting drugs **/
 
 - Niacin
 -AMPHOTERICIN B (no strength) (081204001)
 
 
 
-/** BUgs **
+/** Bugs **/
 - Not tracking lccNote
 - "Facilitated Access Products" showing up in classification???
 - Classification logic is bad, Length of name code indicates deptch
