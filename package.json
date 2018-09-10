@@ -4,8 +4,16 @@
   "description": "Better interface for the ODB Formulary",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --ignore temp test.js"
+    "test": "pico-check",
+    "dev": "vitreum --dev",
+    "heroku": "opn https://dashboard.heroku.com/apps/odb-formulary",
+    "build": "vitreum",
+    "prod": "cross-env NODE_ENV=production vitreum",
+    "postinstall": "npm run build",
+    "start": "node app.js",
+    "lint": "eslint --fix **/*.{js,jsx}",
+    "lint:dry": "eslint **/*.{js,jsx}",
+    "test:dev": "pico-check -v -w"
   },
   "repository": {
     "type": "git",
@@ -18,10 +26,45 @@
   },
   "homepage": "https://github.com/stolksdorf/formulary#readme",
   "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "classnames": "^2.2.6",
+    "create-react-class": "^15.6.3",
+    "express": "^4.16.3",
+    "fast-levenshtein": "^2.0.6",
     "lodash": "^4.17.10",
-    "md5": "^2.2.1",
+    "pico-conf": "^1.4.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
     "short-hash": "^1.0.0",
     "superagent": "^3.8.3",
+    "vitreum": "^5.1.0",
     "xml2js": "^0.4.19"
+  },
+  "vitreum": {
+    "targets": [
+      "client/main/main.jsx"
+    ],
+    "template": "./client/template.html.js"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-object-rest-spread"
+    ]
+  },
+  "eslintIgnore": [
+    "build/*"
+  ],
+  "picocheck": {
+    "require": "./tests/test.init.js"
+  },
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-plugin-react": "^7.11.1",
+    "pico-check": "^1.0.6"
   }
 }

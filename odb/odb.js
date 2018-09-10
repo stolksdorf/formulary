@@ -4,8 +4,8 @@ const shortHash = require('short-hash');
 const xmlParse  = require('xml2js').parseString;
 
 /** Utils **/
-const removeParen = (str)=>str.replace(/ *\([^)]*\) */g, "");
-const genId = (a,b)=>shortHash(`${a}|${b}`);
+const removeParen = (str)=>str.replace(/ *\([^)]*\) */g, '');
+const genId = (a, b)=>shortHash(`${a}|${b}`);
 const processGroupName = (name)=>removeParen(name).split(' ').map(_.capitalize).join(' ');
 
 const ODB = {
@@ -15,31 +15,31 @@ const ODB = {
 			.then((res)=>res.text)
 			.then((xml)=>{
 				return new Promise((resolve, reject)=>{
-					xmlParse(xml, (err, result)=>err?reject(err):resolve(result))
+					xmlParse(xml, (err, result)=>err?reject(err):resolve(result));
 				});
 			})
 			.then((json)=>ODB.parse(json));
 	},
 
 	parse : (json)=>{
-		let data = {};
+		const data = {};
 		const parseManufacturer = (json)=>{
 			return json.extract.manufacturerList[0].manufacturer.reduce((acc, manu)=>{
 				const id = manu.$.id;
 				acc[id] ={
 					id,
-					name : manu._.replace(` - "DO NOT USE"`, ''),
+					name  : manu._.replace(` - "DO NOT USE"`, ''),
 					valid : manu._.indexOf(` - "DO NOT USE"`) == -1
-				}
+				};
 				return acc;
 			}, {});
 		};
 
 		const parseInfo = (json)=>{
 			return {
-				edition : json.extract.formulary[0].$.edition,
+				edition     : json.extract.formulary[0].$.edition,
 				lastUpdated : json.extract.formulary[0].$.formularyDate,
-			}
+			};
 		};
 
 		const parseDrug = (drugs, item, groups)=>{
@@ -68,7 +68,7 @@ const ODB = {
 					chronic       : drug.$.chronicUseMed == 'Y',
 					listingData   : drug.listingDate[0],
 					lccNote       : false
-				})
+				});
 			});
 			return drugs;
 		};
@@ -78,7 +78,7 @@ const ODB = {
 			const loop = (obj, groups=[])=>{
 				if(obj.name) groups = groups.concat(processGroupName(obj.name[0]));
 				//TODO: Add check of lccNote, "reasonForUseId"
-				['pcg2','pcg6','pcg9','pcgGroup','genericName'].map((key)=>{
+				['pcg2', 'pcg6', 'pcg9', 'pcgGroup', 'genericName'].map((key)=>{
 					if(obj[key]) obj[key].map((i)=>loop(i, groups));
 				});
 				if(obj.drug) drugs = parseDrug(drugs, obj, groups.slice(0));
@@ -92,6 +92,6 @@ const ODB = {
 		//data.manufacturers = parseManufacturer(json);
 		return data;
 	}
-}
+};
 
 module.exports = ODB;

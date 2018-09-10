@@ -1,0 +1,24 @@
+.DrugContainer{
+	margin-top : 3em;
+
+	.drugs{
+		display: flex;
+		//justify-content: center;
+		justify-content: flex-start;
+
+		flex-wrap : wrap;
+	}
+
+	.DrugCard{
+		margin-top : 1em;
+		&:not(:last-child) {
+			margin-right: 1em;
+		}
+	}
+
+	button{
+		margin-top: 3em;
+		margin : 0 auto;
+	}
+
+}
