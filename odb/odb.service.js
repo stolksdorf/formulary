@@ -10,6 +10,7 @@ let cache = {
 
 
 const score = (search, val)=>{
+	val = val.toLowerCase();
 	if(val.startsWith(search)) return 0;
 	if(val.indexOf(search) !== -1) return 0.1;
 	return levenshtein.get(search, val, { useCollator : true });
@@ -27,6 +28,7 @@ const Service = {
 	get : ()=>cache,
 
 	search : (term, classification=false)=>{
+		term = term.toLowerCase();
 		return _.map(cache.drugs, (drug)=>{
 			drug.score = scoreDrug(term, drug)
 			return drug;
